@@ -1,5 +1,10 @@
 # Historical logs
 
+## Version 0.2.1
+
+- Release date: Dec 14, 2020
+- patched with mongo and validator-types
+
 ## Version 0.2.0
 
 - Release date: Dec 14, 2020
