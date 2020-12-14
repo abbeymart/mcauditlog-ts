@@ -6,4 +6,4 @@
  */
 
 export * from './auditLog';
-export * from './auditlog.mongo';
+export * from './auditLogMongo';

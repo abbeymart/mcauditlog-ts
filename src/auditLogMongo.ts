@@ -6,7 +6,7 @@
  */
 
 // Import required module/function(s)
-import { MongoDbConnectType, checkDb } from "../../mc-db/src";
+import { MongoDbConnectType, checkDb } from "@mconnect/mcdb";
 import { getResMessage, ResponseMessage } from "@mconnect/mcresponse";
 
 //types
@@ -19,14 +19,16 @@ export interface AuditLogOptionsType {
     newRecordParams?: any;
 }
 
-// export enum AuditLogTypes {
-//     CREATE,
-//     UPDATE,
-//     DELETE,
-//     READ,
-//     LOGIN,
-//     LOGOUT
-// }
+export enum AuditLogTypes {
+    CREATE = "create",
+    UPDATE = "update",
+    DELETE = "delete",
+    REMOVE = "remove",
+    GET = "get",
+    READ = "read",
+    LOGIN = "login",
+    LOGOUT = "logout",
+}
 
 class AuditLogMongo {
     private readonly dbConnect: MongoDbConnectType;
@@ -72,7 +74,7 @@ class AuditLogMongo {
                 collDocuments: collDocuments,
                 logType      : "create",
                 logBy        : userId,
-                logAt      : new Date(),
+                logAt        : new Date(),
             });
 
             if (result) {
@@ -133,7 +135,7 @@ class AuditLogMongo {
                 newCollDocuments: newCollDocuments,
                 logType         : "update",
                 logBy           : userId,
-                logAt         : new Date(),
+                logAt           : new Date(),
             });
 
             if (result) {
@@ -181,7 +183,7 @@ class AuditLogMongo {
                 collDocuments: collDocuments,
                 logType      : "read",
                 logBy        : userId,
-                logAt      : new Date(),
+                logAt        : new Date(),
             });
 
             if (result) {
@@ -233,7 +235,7 @@ class AuditLogMongo {
                 collDocuments: collDocuments,
                 logType      : "remove",
                 logBy        : userId,
-                logAt      : new Date(),
+                logAt        : new Date(),
             });
 
             if (result) {
@@ -274,7 +276,7 @@ class AuditLogMongo {
                 collDocuments: collDocuments,
                 logType      : "login",
                 logBy        : userId,
-                logAt      : new Date(),
+                logAt        : new Date(),
             });
 
             if (result) {
@@ -319,7 +321,7 @@ class AuditLogMongo {
                 collDocuments: collDocuments,
                 logType      : "logout",
                 logBy        : userId,
-                logAt      : new Date(),
+                logAt        : new Date(),
             });
 
             if (result) {
@@ -354,6 +356,7 @@ class AuditLogMongo {
 
         switch (logType) {
             case "create":
+            case AuditLogTypes.CREATE:
                 collName = options && options.collName ? options.collName : "";
                 collDocuments = options && options.collDocuments ? options.collDocuments : null;
                 // validate params/values
@@ -382,6 +385,7 @@ class AuditLogMongo {
                 };
                 break;
             case "update":
+            case AuditLogTypes.UPDATE:
                 collName = options && options.collName ? options.collName : "";
                 collDocuments = options && options.collDocuments ? options.collDocuments : null;
                 newCollDocuments = options && options.newCollDocuments ? options.newCollDocuments : null; // object or array
@@ -419,6 +423,8 @@ class AuditLogMongo {
                 break;
             case "remove":
             case "delete":
+            case AuditLogTypes.DELETE:
+            case AuditLogTypes.REMOVE:
                 collName = options && options.collName ? options.collName : "";
                 collDocuments = options && options.collDocuments ? options.collDocuments : null;
 
@@ -449,6 +455,8 @@ class AuditLogMongo {
                 };
                 break;
             case "read":
+            case AuditLogTypes.GET:
+            case AuditLogTypes.READ:
                 collName = options && options.collName ? options.collName : "";
                 collDocuments = options && options.collDocuments ? options.collDocuments : null;
 
@@ -475,6 +483,7 @@ class AuditLogMongo {
                 };
                 break;
             case "login":
+            case AuditLogTypes.LOGIN:
                 collDocuments = options && options.collDocuments ? options.collDocuments : null;
 
                 // validate params/values
@@ -494,6 +503,7 @@ class AuditLogMongo {
                 };
                 break;
             case "logout":
+            case AuditLogTypes.LOGOUT:
                 collDocuments = options && options.collDocuments ? options.collDocuments : null;
 
                 // validate params/values
@@ -542,7 +552,6 @@ class AuditLogMongo {
             });
         }
     }
-
 }
 
 function newAuditLogMongo(auditDb: MongoDbConnectType, options?: AuditLogOptionsType) {

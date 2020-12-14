@@ -7,8 +7,18 @@
 
 import { mcTest, assertEquals, postTestResult } from "@mconnect/mctest";
 import { newAuditLog } from "../src";
-import { newDbConnect } from "../../mc-db/src";
-import { dbs } from "../../mc-db/test/config/dbConfig";
+import { newDbConnect } from "@mconnect/mcdb";
+
+const dbs = {
+    postgres: {
+        location: process.env.PGDB_URL || "postgres://localhost:5432/mc-dev",
+        host    : process.env.PGDB_HOST || "localhost",
+        username: process.env.PGDB_USER || "postgres",
+        password: process.env.PGDB_PWD || "ab12testing",
+        database: process.env.PDDB_DBNAME || "mccentral",
+        port    : process.env.PGDB_PORT || 5432,
+    }
+}
 
 import { auditModel } from "./model";
 

@@ -7,10 +7,20 @@
 
 import { mcTest, assertEquals, postTestResult } from "@mconnect/mctest";
 import { newAuditLogMongo } from "../src";
-import { newDbMongo } from "../../mc-db/src";
-import { dbs } from "../../mc-db/test/config/dbConfig";
+import { newDbMongo } from "@mconnect/mcdb";
 
 // test data
+const dbs = {
+    mongodb : {
+        location: process.env.MONGODB_URL || "mongodb://localhost:27017/mc-central",
+        host    : process.env.MONGODB_HOST || "localhost",
+        username: process.env.MONGODB_USER || "abbeymart",
+        password: process.env.MONGODB_PWD || "ab12testing",
+        database: process.env.MONGODB_DBNAME || "mc-central",
+        port    : process.env.MONGODB_PORT || 27017,
+    }
+}
+
 const
     collName = "services",
     userId = "abbeycityunited2020";

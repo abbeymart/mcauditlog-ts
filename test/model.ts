@@ -5,7 +5,7 @@
  * @Description: mc-central-ts: audit-log model (Audit => audits)
  */
 
-import { DbConnectType } from "../../mc-db/src";
+import { DbConnectType } from "@mconnect/mcdb";
 import { DataTypes, Model } from "sequelize";
 
 export async function auditModel(dbc: DbConnectType) {
