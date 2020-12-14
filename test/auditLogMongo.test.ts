@@ -11,7 +11,7 @@ import { newDbMongo } from "@mconnect/mcdb";
 
 // test data
 const dbs = {
-    mongodb : {
+    mongodb: {
         location: process.env.MONGODB_URL || "mongodb://localhost:27017/mc-central",
         host    : process.env.MONGODB_HOST || "localhost",
         username: process.env.MONGODB_USER || "abbeymart",
@@ -59,7 +59,7 @@ const newCollDocuments: any = {
         name    : "should store create-transaction log and return success: ",
         testFunc: async () => {
             let res = await auditLog.createLog(collName, collDocuments, userId);
-            console.log("create-log-result-100: ", res);
+            // console.log("create-log-result-100: ", res);
             assertEquals(res.code, "success");
         },
     });
@@ -110,7 +110,7 @@ const newCollDocuments: any = {
         testFunc: async () => {
             let res = await auditLog.createLog(collName, collDocuments, "");
             assertEquals(res.code, "logError");
-            console.assert(res.message.includes("userId is required"), true);
+            assertEquals(res.message.includes("userId is required"), true);
         },
     });
 

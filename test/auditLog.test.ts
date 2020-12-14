@@ -113,7 +113,7 @@ const newCollDocuments: any = {
         testFunc: async () => {
             let res = await auditLog.createLog(collName, collDocuments, "");
             assertEquals(res.code, "logError");
-            console.assert(res.message.includes("userId is required"), true);
+            assertEquals(res.message.includes("userId is required"), true);
         },
     });
 
