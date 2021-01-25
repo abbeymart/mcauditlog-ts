@@ -42,7 +42,7 @@ const newCollDocuments: any = {
 
 (async () => {
     // pre-testing setup
-    let dbc = await newDbMongo(dbs.mongodb);
+    let dbc = await newDbMongo(dbs.mongodb, {checkAccess: false});
     let auditDb = await dbc.openDb("mccentral");
 
     const auditLog = newAuditLogMongo(auditDb, {auditColl: "audits"});
