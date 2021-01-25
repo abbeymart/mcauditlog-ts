@@ -1,5 +1,10 @@
 # Historical logs
 
+## Version 0.2.3
+
+- Release date: Jan 25, 2021
+- updated mcdb package to v0.2.5
+
 ## Version 0.2.2
 
 - Release date: Jan 25, 2021
