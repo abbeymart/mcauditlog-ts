@@ -1,5 +1,16 @@
 # Historical logs
 
+## Version 0.2.5
+
+- Release date: Jun 06, 2021
+- updated mcresponse package to v0.4.1 & mcdb to v0.2.7
+
+## Version 0.2.4
+
+- Release date: Jun 06, 2021
+- updated mcresponse package to v0.4.1 & mcdb to v0.2.6
+
+
 ## Version 0.2.3
 
 - Release date: Jan 25, 2021
